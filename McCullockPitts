@@ -1,0 +1,201 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMHZ1CH13fJ4v7aYXplxRyJ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/JuanParedes85793/Inteligencia-Artificial/blob/main/McCullockPitts\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##Notebook 1: Neurona McCulloch-Pitts – Operación OR"
+      ],
+      "metadata": {
+        "id": "el-bWNfMiwG2"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 174
+        },
+        "id": "iHUMORVdikQV",
+        "outputId": "f82b5f02-e045-4e54-c0d2-be1c4d8cd26c"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "x1 | x2 | Salida\n",
+            "-----------------\n",
+            " 0 |  0 |   0\n",
+            " 0 |  1 |   1\n",
+            " 1 |  0 |   1\n",
+            " 1 |  1 |   1\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'\\nEsta neurona simula la operación lógica OR, que da como resultado 1 cuando al menos una de las entradas es 1.\\nLos pesos (w1 y w2) indican la importancia de cada entrada.\\nSi la suma de las entradas ponderadas alcanza o supera el umbral (θ), la neurona “se activa” (salida = 1).\\nEn caso contrario, la salida es 0.\\n'"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 2
+        }
+      ],
+      "source": [
+        "# ============================================\n",
+        "# Neurona McCulloch-Pitts - Operación OR\n",
+        "# ============================================\n",
+        "\n",
+        "# Entradas posibles de la compuerta OR\n",
+        "entradas = [\n",
+        "    (0, 0),\n",
+        "    (0, 1),\n",
+        "    (1, 0),\n",
+        "    (1, 1)\n",
+        "]\n",
+        "\n",
+        "# Pesos de la neurona (uno por cada entrada)\n",
+        "w1 = 1\n",
+        "w2 = 1\n",
+        "\n",
+        "# Umbral (θ)\n",
+        "theta = 1\n",
+        "\n",
+        "# Función de activación (función escalón)\n",
+        "def activacion(suma):\n",
+        "    if suma >= theta:\n",
+        "        return 1\n",
+        "    else:\n",
+        "        return 0\n",
+        "\n",
+        "print(\"x1 | x2 | Salida\")\n",
+        "print(\"-----------------\")\n",
+        "\n",
+        "# Calcular la salida para cada combinación\n",
+        "for x1, x2 in entradas:\n",
+        "    suma = w1*x1 + w2*x2\n",
+        "    salida = activacion(suma)\n",
+        "    print(f\" {x1} |  {x2} |   {salida}\")\n",
+        "\n",
+        "\"\"\"\n",
+        "Esta neurona simula la operación lógica OR, que da como resultado 1 cuando al menos una de las entradas es 1.\n",
+        "Los pesos (w1 y w2) indican la importancia de cada entrada.\n",
+        "Si la suma de las entradas ponderadas alcanza o supera el umbral (θ), la neurona “se activa” (salida = 1).\n",
+        "En caso contrario, la salida es 0.\n",
+        "\"\"\"\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Notebook 2: Neurona McCulloch-Pitts – Operación NOT"
+      ],
+      "metadata": {
+        "id": "CJrRauAojHgM"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ============================================\n",
+        "# Neurona McCulloch-Pitts - Operación NOT\n",
+        "# ============================================\n",
+        "\n",
+        "# Entradas posibles de la compuerta NOT (solo una entrada)\n",
+        "entradas = [0, 1]\n",
+        "\n",
+        "# Peso y umbral\n",
+        "w = -1     # peso negativo, porque invierte la señal\n",
+        "theta = -0.5\n",
+        "\n",
+        "# Función de activación\n",
+        "def activacion(suma):\n",
+        "    if suma >= theta:\n",
+        "        return 1\n",
+        "    else:\n",
+        "        return 0\n",
+        "\n",
+        "print(\"x | Salida\")\n",
+        "print(\"-----------\")\n",
+        "\n",
+        "# Calcular salida\n",
+        "for x in entradas:\n",
+        "    suma = w * x\n",
+        "    salida = activacion(suma)\n",
+        "    print(f\"{x} |   {salida}\")\n",
+        "\n",
+        "\"\"\"\n",
+        "Esta neurona representa la operación NOT, la cual invierte la señal de entrada.\n",
+        "Si la entrada es 1, la salida es 0; y si la entrada es 0, la salida es 1.\n",
+        "Esto se logra usando un peso negativo, haciendo que el valor total disminuya cuando la entrada es 1, impidiendo que alcance el umbral.\n",
+        "\"\"\""
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 122
+        },
+        "id": "N7uNz_HUjNbu",
+        "outputId": "c36a347a-27bb-4849-9c4e-11b067da810c"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "x | Salida\n",
+            "-----------\n",
+            "0 |   1\n",
+            "1 |   0\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'\\nEsta neurona representa la operación NOT, la cual invierte la señal de entrada.\\nSi la entrada es 1, la salida es 0; y si la entrada es 0, la salida es 1.\\nEsto se logra usando un peso negativo, haciendo que el valor total disminuya cuando la entrada es 1, impidiendo que alcance el umbral.\\n'"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    }
+  ]
+}
