@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyPe2iEOwaY2uqELwhYiZeq+",
+      "authorship_tag": "ABX9TyNeHVtTRSGVNRcubJ2xjN4j",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -64,6 +64,9 @@
         "        sesgo: Es un flotante\n",
         "        tasa_de_aprendizaje: Es un flotante\n",
         "      \"\"\"\n",
+        "      \"\"\"\n",
+        "      En esta parte se configura la neurona antes de empezar a aprender.\n",
+        "      \"\"\"\n",
         "      self.pesos = pesos\n",
         "      self.sesgo = sesgo\n",
         "      self.tasa_de_aprendizaje = tasa_de_aprendizaje\n",
@@ -76,13 +79,13 @@
         "        return 1\n",
         "      else:\n",
         "        return 0\n",
-        "\n",
+        "### Es una función escalón, muy usada en perceptrones básicos, y sirve para clasificar entre dos categorías.\n",
         "    def entrenamiento(self, X, y, epocas):\n",
         "      \"\"\"\n",
         "      Parametros:\n",
         "      epocas: Es un entero\n",
         "      \"\"\"\n",
-        "\n",
+        "### en este método la neurona aprende de sus errores, ajustando sus parámetros poco a poco hasta mejorar sus predicciones.\n",
         "      for epoca in range(epocas): #Cuantas veces recorrere las espocas\n",
         "        for dato in X:\n",
         "          # Definimos los datos\n",
@@ -101,7 +104,7 @@
         "          self.sesgo = self.sesgo + self.tasa_de_aprendizaje*(y_real-y_pred)\n",
         "          print(f\"Dato {dato}, Pesos: {self.pesos} y sesgo es {self.sesgo}\")\n",
         "        print(f\"Epoca {epoca}, Pesos: {self.pesos} y sesgo es {self.sesgo}\")\n",
-        "\n",
+        "### Aquí la neurona ya no aprende, solo usa lo aprendido para hacer predicciones.\n",
         "      def prediccion(self, X, Y):\n",
         "        \"\"\"\n",
         "        \"\"\"\n",
@@ -133,7 +136,11 @@
         "sesgo = 2\n",
         "pesos = [5, 3]\n",
         "tasa_de_aprendizaje = 0.1\n",
-        "p = Perceptron(pesos, sesgo, tasa_de_aprendizaje)"
+        "p = Perceptron(pesos, sesgo, tasa_de_aprendizaje)\n",
+        "\"\"\"\n",
+        " Esta es la matriz de entradas del perceptrón.\n",
+        "Cada par de números representa un conjunto de datos (x₁, x₂) que la neurona va a analizar.\n",
+        "\"\"\""
       ],
       "metadata": {
         "id": "QZupYrRpM_35"
